@@ -386,6 +386,12 @@
 
     enableElementDeletion() {
       try {
+        // 隐藏悬浮窗
+        const floatBtn = document.getElementById("maybe-page-tools-float-btn");
+        const popup = document.getElementById("maybe-page-tools-popup");
+        if (floatBtn) floatBtn.style.display = "none";
+        if (popup) popup.style.display = "none";
+
         Utils.showNotification("点击要删除的元素，按ESC取消", "info");
 
         const handleClick = (e) => {
