@@ -1,0 +1,284 @@
+/* 页面工具扩展样式 */
+
+/* 浮动按钮样式 */
+#maybe-page-tools-float-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  line-height: 56px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 999999;
+  user-select: none;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#maybe-page-tools-float-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+}
+
+#maybe-page-tools-float-btn:active {
+  transform: scale(0.95);
+}
+
+#maybe-page-tools-float-btn svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+#maybe-page-tools-float-btn:hover svg {
+  transform: rotate(90deg);
+}
+
+/* 弹窗容器样式 */
+#maybe-page-tools-popup {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  width: 280px;
+  max-height: 80vh;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  padding: 16px;
+  z-index: 999999;
+  font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  scroll-behavior: smooth;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 弹窗按钮样式 */
+#maybe-page-tools-popup button {
+  margin: 8px 2px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #667eea;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  position: relative;
+  overflow: visible;
+  min-height: 44px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: normal;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 4px);
+  box-sizing: border-box;
+}
+
+#maybe-page-tools-popup button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+#maybe-page-tools-popup button:hover::before {
+  left: 100%;
+}
+
+#maybe-page-tools-popup button:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  z-index: 1;
+  margin-left: -2px;
+  margin-right: -2px;
+  width: calc(100% + 4px);
+}
+
+#maybe-page-tools-popup button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* 进度提示样式 */
+#maybe-page-tools-progress {
+  color: #4caf50;
+  font-size: 13px;
+  margin: 8px 0;
+  min-height: 20px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  padding: 8px 12px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 6px;
+  border-left: 3px solid #4caf50;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* 滚动条样式 */
+#maybe-page-tools-popup::-webkit-scrollbar {
+  width: 6px;
+}
+
+#maybe-page-tools-popup::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+#maybe-page-tools-popup::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 3px;
+}
+
+#maybe-page-tools-popup::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.7);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  #maybe-page-tools-float-btn {
+    right: 15px;
+    bottom: 15px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  #maybe-page-tools-popup {
+    right: 15px;
+    bottom: 80px;
+    width: calc(100vw - 30px);
+    max-width: 300px;
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 480px) {
+  #maybe-page-tools-popup {
+    right: 10px;
+    bottom: 70px;
+    width: calc(100vw - 20px);
+    padding: 12px;
+  }
+  
+  #maybe-page-tools-popup button {
+    padding: 10px 14px;
+    font-size: 13px;
+    min-height: 40px;
+    margin: 6px 1px;
+    width: calc(100% - 2px);
+  }
+  
+  #maybe-page-tools-popup button:hover {
+    margin-left: -1px;
+    margin-right: -1px;
+    width: calc(100% + 2px);
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  #maybe-page-tools-popup {
+    background: rgba(30, 30, 30, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+  
+  #maybe-page-tools-popup button {
+    background: rgba(50, 50, 50, 0.8);
+    color: #667eea;
+    border-color: rgba(102, 126, 234, 0.3);
+  }
+  
+  #maybe-page-tools-popup button:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    margin-left: -2px;
+    margin-right: -2px;
+    width: calc(100% + 4px);
+  }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  #maybe-page-tools-float-btn {
+    border: 2px solid #ffffff;
+  }
+  
+  #maybe-page-tools-popup {
+    border: 2px solid #000000;
+  }
+  
+  #maybe-page-tools-popup button {
+    border: 2px solid #000000;
+    margin: 6px 2px;
+    width: calc(100% - 4px);
+  }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+  #maybe-page-tools-float-btn,
+  #maybe-page-tools-popup,
+  #maybe-page-tools-popup button {
+    transition: none;
+    animation: none;
+  }
+  
+  #maybe-page-tools-float-btn:hover {
+    transform: none;
+  }
+  
+  #maybe-page-tools-popup button:hover {
+    transform: none;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  #maybe-page-tools-float-btn,
+  #maybe-page-tools-popup {
+    display: none !important;
+  }
+}

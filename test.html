@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面工具合集 - 测试页面</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .test-section {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    
+    .test-section h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .ad-test {
+      background: #ffebee;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #f44336;
+    }
+    
+    .ad-test::before {
+      content: "广告区域";
+      font-weight: bold;
+      color: #f44336;
+    }
+    
+    .content-test {
+      background: #e8f5e8;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #4caf50;
+    }
+    
+    .content-test::before {
+      content: "主要内容";
+      font-weight: bold;
+      color: #4caf50;
+    }
+    
+    .link-test {
+      color: #2196f3;
+      text-decoration: underline;
+    }
+    
+    .image-test {
+      max-width: 200px;
+      height: auto;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>页面工具合集 - 功能测试页面</h1>
+  
+  <div class="test-section">
+    <h2>🔗 链接测试</h2>
+    <p>这是一个<a href="#" class="link-test">测试链接</a>，用于测试高亮功能。</p>
+    <p>还有更多<a href="#" class="link-test">链接</a>可以<a href="#" class="link-test">测试</a>。</p>
+  </div>
+  
+  <div class="test-section">
+    <h2>🖼️ 图片测试</h2>
+    <p>以下是一些测试图片：</p>
+    <img src="https://via.placeholder.com/200x150/667eea/ffffff?text=测试图片1" alt="测试图片1" class="image-test">
+    <img src="https://via.placeholder.com/200x150/764ba2/ffffff?text=测试图片2" alt="测试图片2" class="image-test">
+    <img src="https://via.placeholder.com/200x150/4caf50/ffffff?text=测试图片3" alt="测试图片3" class="image-test">
+  </div>
+  
+  <div class="test-section">
+    <h2>🚫 广告测试</h2>
+    <div class="ad-test">
+      这是一个模拟的广告区域，应该可以被广告移除功能识别并删除。
+    </div>
+    <div class="ad-test">
+      另一个广告区域，用于测试批量移除功能。
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>📄 内容测试</h2>
+    <div class="content-test">
+      <h3>主要内容区域</h3>
+      <p>这是页面的主要内容，应该被内容提取功能识别。</p>
+      <p>这里包含了一些重要的文本内容，用于测试内容提取功能。</p>
+      <ul>
+        <li>列表项目1</li>
+        <li>列表项目2</li>
+        <li>列表项目3</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>🔍 元素测试</h2>
+    <p>将鼠标悬停在下面的元素上，应该能看到元素信息：</p>
+    <div id="test-element" class="test-element" style="padding: 10px; background: #f0f0f0; margin: 10px 0;">
+      这是一个测试元素，有ID和类名
+    </div>
+    <button id="test-button" class="test-button" style="padding: 8px 16px; background: #2196f3; color: white; border: none; border-radius: 4px;">
+      测试按钮
+    </button>
+  </div>
+  
+  <div class="test-section">
+    <h2>📊 页面统计测试</h2>
+    <p>这个页面包含：</p>
+    <ul>
+      <li>多个链接</li>
+      <li>多张图片</li>
+      <li>广告元素</li>
+      <li>主要内容区域</li>
+      <li>各种HTML元素</li>
+    </ul>
+  </div>
+  
+  <div class="test-section">
+    <h2>🎨 样式测试</h2>
+    <p>这个区域用于测试样式调整功能：</p>
+    <div style="font-size: 14px; line-height: 1.4; max-width: 600px;">
+      <p>这是一段测试文本，用于验证样式调整功能是否正常工作。</p>
+      <p>文本应该具有良好的可读性和合适的字体大小。</p>
+    </div>
+  </div>
+  
+  <script>
+    // 添加一些动态内容用于测试
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('测试页面已加载');
+      
+      // 添加一些动态链接
+      const links = document.querySelectorAll('.link-test');
+      links.forEach((link, index) => {
+        link.href = `#test-link-${index + 1}`;
+        link.textContent = `测试链接 ${index + 1}`;
+      });
+    });
+  </script>
+</body>
+</html> 

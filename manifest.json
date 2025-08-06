@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "页面工具合集 - 增强版",
+  "version": "2.0.0",
+  "description": "集成多种页面工具的悬浮按钮扩展，支持截图、下载、样式调整、开发者工具等功能",
+  "author": "页面工具开发者",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage",
+    "notifications",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_title": "页面工具合集",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "commands": {
+    "toggle-float-button": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
+      },
+      "description": "切换悬浮按钮显示/隐藏"
+    },
+    "take-screenshot": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "快速截图"
+    },
+    "remove-ads": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
+      },
+      "description": "移除页面广告"
+    }
+  },
+  "minimum_chrome_version": "88",
+  "update_url": "https://clients2.google.com/service/update2/crx"
+}
