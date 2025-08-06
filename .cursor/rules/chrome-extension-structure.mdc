@@ -1,0 +1,43 @@
+---
+alwaysApply: true
+---
+
+# Chrome Extension Project Structure
+
+This is a Chrome Extension (Manifest V3) project called "页面工具合集 - 增强版" (Page Tools Collection - Enhanced Version).
+
+## Core Files Structure
+
+- [manifest.json](mdc:manifest.json) - Extension manifest with permissions and configuration
+- [content-script.js](mdc:content-script.js) - Main content script injected into web pages (877 lines)
+- [background.js](mdc:background.js) - Service worker for background tasks (352 lines)
+- [popup.js](mdc:popup.js) - Popup window logic (345 lines)
+- [popup.html](mdc:popup.html) - Extension popup UI (234 lines)
+- [styles.css](mdc:styles.css) - Styles for content script UI (285 lines)
+
+## Key Architecture
+
+### Content Script Components
+- **UIManager class**: Manages floating button and popup UI
+  - Creates floating button with ID `maybe-page-tools-float-btn`
+  - Creates popup with ID `maybe-page-tools-popup`
+- **FeatureManager class**: Implements 12 core features including screenshot, ad removal, element inspection
+- **Utils class**: Utility functions for notifications and common operations
+
+### Main Features
+1. 🔗 高亮链接 (Highlight Links)
+2. 📸 页面截图 (Page Screenshot) - with floating window hiding logic
+3. 🖼️ 图片链接 (Image Links)
+4. 🚫 移除广告 (Remove Ads)
+5. 🗑️ 删除元素 (Delete Elements)
+6. 🔍 元素检查 (Element Inspector)
+7. 📄 提取正文 (Extract Main Content)
+8. 💾 下载图片 (Download Images)
+9. 📦 打包下载 (Batch Download)
+10. 🎨 样式调整 (Style Adjustment)
+11. 📊 页面统计 (Page Statistics)
+12. 🔧 开发者工具 (Developer Tools)
+
+### Communication Pattern
+- Content script ↔ Background script via `chrome.runtime.sendMessage`
+- Background script handles screenshot capture via `chrome.tabs.captureVisibleTab`

@@ -1,0 +1,55 @@
+---
+globs: manifest.json,background.js
+---
+
+# Manifest V3 Chrome Extension Guidelines
+
+## Manifest Structure
+
+The [manifest.json](mdc:manifest.json) follows Manifest V3 specifications:
+
+### Required Fields
+- `manifest_version: 3`
+- `name`, `version`, `description`
+- Service worker in `background.service_worker`
+
+### Permissions Used
+- `activeTab` - Access to current tab
+- `scripting` - For content script injection
+- `downloads` - File download functionality
+- `storage` - Extension data storage
+- `notifications` - User notifications
+- `tabs` - Tab management
+- `host_permissions: ["<all_urls>"]` - Access to all websites
+
+### Content Scripts
+- Runs at `document_end` for full DOM access
+- Injects both JS and CSS files
+- Matches `<all_urls>` for universal functionality
+
+## Background Script (Service Worker)
+
+The [background.js](mdc:background.js) handles:
+- Screenshot capture via `chrome.tabs.captureVisibleTab`
+- Message passing between content script and extension
+- Keyboard shortcuts handling
+- Download management
+
+### Message Passing Pattern
+```javascript
+// Content script sends message
+chrome.runtime.sendMessage({action: 'takeScreenshot'}, callback);
+
+// Background script handles message
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'takeScreenshot') {
+    // Handle screenshot logic
+  }
+});
+```
+
+## Security Considerations
+- CSP policy restricts script execution
+- Use `chrome.scripting.executeScript` for dynamic code injection
+- Validate all user inputs and external data
+- Use web_accessible_resources for CSS files accessed by content scripts

@@ -1,0 +1,54 @@
+---
+globs: content-script.js
+---
+
+# Content Script Development Patterns
+
+## Class Structure Guidelines
+
+### UIManager Class
+- Manages DOM elements with specific IDs: `maybe-page-tools-float-btn`, `maybe-page-tools-popup`
+- Always append elements to `document.body`
+- Use consistent styling and event binding patterns
+
+### FeatureManager Class
+- Each feature should be async and include proper error handling
+- Use `this.ui.updateProgress()` for user feedback
+- Use `Utils.showNotification()` for success/error messages
+- Screenshot functionality must hide floating UI elements before capture
+
+### Utils Class
+- Static methods for common operations
+- Notification system with success/error types
+- DOM manipulation helpers
+
+## Screenshot Implementation Pattern
+
+When implementing screenshot features:
+```javascript
+// Always hide floating UI before screenshot
+const floatBtn = document.getElementById("maybe-page-tools-float-btn");
+const popup = document.getElementById("maybe-page-tools-popup");
+const floatBtnDisplay = floatBtn ? floatBtn.style.display : null;
+const popupDisplay = popup ? popup.style.display : null;
+if (floatBtn) floatBtn.style.display = "none";
+if (popup) popup.style.display = "none";
+
+// Take screenshot...
+
+// Always restore UI after screenshot
+if (floatBtn) floatBtn.style.display = floatBtnDisplay;
+if (popup) popup.style.display = popupDisplay;
+```
+
+## Ad Removal Patterns
+
+- Use selector arrays for targeting ad elements
+- Comment out selectors that might be too broad (e.g., "banner", "popup")
+- Always include try-catch for DOM manipulation
+- Provide user feedback on removal count
+
+## Error Handling
+- Wrap all feature methods in try-catch blocks
+- Use `Utils.showNotification()` for error reporting
+- Update progress indicators on both success and failure

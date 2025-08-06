@@ -1,0 +1,58 @@
+---
+globs: styles.css,popup.html,*.js
+---
+
+# UI Styling and Design Conventions
+
+## CSS Architecture
+
+The [styles.css](mdc:styles.css) file contains styles for content script UI elements.
+
+### Naming Conventions
+- Use `maybe-page-tools-` prefix for all extension-related IDs
+- Example: `#maybe-page-tools-float-btn`, `#maybe-page-tools-popup`
+- Avoid generic class names that might conflict with host page styles
+
+### Floating Button Styles
+- Fixed positioning for consistent placement
+- High z-index to stay above page content
+- Smooth transitions for hover effects
+- Responsive design for different screen sizes
+
+### Popup Window Styles
+- Modal-like overlay design
+- Proper backdrop for focus management
+- Scrollable content area for feature lists
+- Progress indicators for user feedback
+
+## HTML Structure
+
+The [popup.html](mdc:popup.html) provides the extension popup interface:
+- Clean, minimal design
+- Feature buttons with emoji icons
+- Settings and configuration options
+- Responsive layout for different popup sizes
+
+## JavaScript UI Patterns
+
+### DOM Element Creation
+```javascript
+// Always set specific IDs for extension elements
+element.id = "maybe-page-tools-specific-name";
+
+// Append to document.body for content script elements
+document.body.appendChild(element);
+
+// Use consistent event binding
+element.addEventListener("click", () => this.handleClick());
+```
+
+### Progress Feedback
+- Use `updateProgress()` method for status updates
+- Clear progress messages after completion
+- Provide visual feedback for all user actions
+
+### Responsive Design
+- Support for different viewport sizes
+- Mobile-friendly touch targets
+- Accessible keyboard navigation

@@ -1,0 +1,60 @@
+---
+description: debugging and testing chrome extension
+---
+
+# Chrome Extension Debugging and Testing
+
+## Development Environment
+
+### Loading Extension for Testing
+1. Open Chrome Extensions page (`chrome://extensions/`)
+2. Enable "Developer mode"
+3. Click "Load unpacked" and select project directory
+4. Reload extension after code changes
+
+### Debugging Tools
+
+#### Content Script Debugging
+- Use browser DevTools on target webpage
+- Content script logs appear in webpage console
+- Use `debugger;` statements for breakpoints
+- Check for conflicts with existing page scripts
+
+#### Background Script Debugging
+- Click "Inspect views: service worker" in Extensions page
+- Background script has its own DevTools instance
+- Monitor message passing between scripts
+- Check for service worker lifecycle issues
+
+#### Popup Debugging
+- Right-click extension icon → "Inspect popup"
+- Popup has separate DevTools instance
+- Test popup interactions and state management
+
+### Common Issues and Solutions
+
+#### Screenshot Functionality
+- Ensure `activeTab` permission is granted
+- Check if `chrome.tabs.captureVisibleTab` has proper error handling
+- Verify floating UI elements are hidden before capture
+- Test on different page types (HTTP/HTTPS, special pages)
+
+#### Content Script Injection
+- Verify `run_at: "document_end"` timing
+- Check for CSP conflicts on target pages
+- Test on various website types and frameworks
+- Handle dynamic content loading scenarios
+
+#### Message Passing
+- Always include error handling in message callbacks
+- Check for proper sender validation in background script
+- Test message passing during page navigation
+- Handle cases where background script is inactive
+
+### Testing Checklist
+- [ ] Test on HTTP and HTTPS pages
+- [ ] Verify functionality on different websites
+- [ ] Check keyboard shortcuts work correctly
+- [ ] Test screenshot feature hides extension UI
+- [ ] Validate ad removal doesn't break page functionality
+- [ ] Ensure proper cleanup when extension is disabled
